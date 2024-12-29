@@ -1,31 +1,35 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
 func main() {
 
 	for {
-		var title, content, state, continu string
+		var continu string
 
 		fmt.Println("Welcome to Todo Application")
 		fmt.Println("Please fill out related fields and we will save your todo in Todo.txt file.")
 
+		reader := bufio.NewReader(os.Stdin)
+
 		fmt.Print("Enter title:")
-		fmt.Scanln(&title)
+		title, _ := reader.ReadString('\n')
 
 		fmt.Print("Enter content:")
-		fmt.Scanln(&content)
+		content, _ := reader.ReadString('\n')
 
 		fmt.Print("Enter state:")
-		fmt.Scanln(&state)
+		state, _ := reader.ReadString('\n')
 
 		var newTodo = todo.New(todo{
-			Title:   strings.ToUpper(title),
-			Content: strings.ToUpper(content),
-			State:   state,
+			Title:   strings.TrimSpace(title),
+			Content: strings.TrimSpace(content),
+			State:   strings.TrimSpace(state),
 		})
 
 		writeFile(newTodo)

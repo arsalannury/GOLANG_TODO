@@ -25,7 +25,7 @@ func writeFile(jsonString todo) {
 	unMarshalData, errUnMarshalData := json.MarshalIndent(todos, "", "     ")
 	check(errUnMarshalData)
 
-	errWriteFile := os.WriteFile("./todo/todo.json", unMarshalData, 0644)
+	errWriteFile := os.WriteFile("./todo.json", unMarshalData, 0644)
 	check(errWriteFile)
 
 }
